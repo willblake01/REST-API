@@ -9,7 +9,49 @@ html {
   position: relative;
 }
 
+.column-titles {
+  display: grid;
+  justify-items: center;
+}
+
 .container {
   display: grid;
   grid-gap: 20px;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  background-color: blanchedalmond;
+}
+
+.header {
+  grid-column: 1/-1;
+  display: grid;
+  justify-items: center;
+  align-content: left;
+}
+
+.submit-todo {
+  grid-column: 1/-1;
+  display: grid;
+  justify-items: center;
+  align-content: left;
+}
+
+.todos {
+  grid-column: 1;
+  display: grid;
+  grid-auto-rows: repeat(3, minmax(80px, 1fr));
+  background-color: aquamarine;
+}
+
+.in-progress {
+  grid-column: 2;
+  display: grid;
+  grid-auto-rows: repeat(3, minmax(80px, 1fr));
+  background-color: aquamarine;
+}
+
+.completed {
+  grid-column: 3;
+  display: grid;
+  grid-auto-rows: repeat(3, minmax(80px, 1fr));
+  background-color: aquamarine;
 }

@@ -1,5 +1,4 @@
-var db = require("../models");
-var todos = [];
+const db = require("../models");
 
 module.exports = function (app) {
   app.get("/test", function (req, res) {
@@ -15,14 +14,6 @@ module.exports = function (app) {
       css: "index.css",
       javascript: "index.js"
     });
-  });
-
-  app.get('/todos', function (req, res) {
-    res.json(todos);
-  });
-
-  app.post('/todos', function (req, res) {
-    var todo = req.body.todo;
   });
 
   // res.send(todo);
