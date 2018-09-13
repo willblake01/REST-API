@@ -1,8 +1,8 @@
-var db = require ('../models');
+const db = require ('../models');
 
 module.exports = function (app) {
 
-var todos = [];
+const todos = [];
 
   // app.get('/todos', function (req, res) {
   //   res.json(todos);

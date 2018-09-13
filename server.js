@@ -24,7 +24,6 @@ app.use(express.static(__dirname + '/public'));
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
 
 // Routes =====================================================================
 require('./routing/apiRoutes.js')(app);
