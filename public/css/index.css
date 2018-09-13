@@ -1,0 +1,15 @@
+@import url('variables.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-gap: 20px;
+}

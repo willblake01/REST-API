@@ -1,13 +1,13 @@
 const express = require('express');
-const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
-
-const PORT = process.env.PORT || 3000;
+const path = require('path');
+const request = require('request');
+const https = require('https');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 const db = require('./models');
 
@@ -17,26 +17,31 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Access static directory
+app.use(express.static(__dirname + '/public'));
+
+// Set Handlebars
+var exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
+
 // Routes =====================================================================
 require('./routing/apiRoutes.js')(app);
+require('./routing/viewRoutes.js')(app);
 
-var todos = [];
-
-app.get('/todos', function (req, res) {
-    res.json(todos);
+app.use(function (err, req, res, next) {
+    if (err) {
+        console.log(err.message);
+        res.status('404').send(err);
+    }
 });
-
-app.post('/todos', function (req, res) {
-    var todo = req.body.todo;
-});
-
-res.send(todo);
 
 // Run server and sync database
-db.sequelize.sync({
-    force: true
-}).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
     app.listen(PORT, function () {
         console.log(`🌎 ==> Server now on port ${PORT}!`);
     });
 });
+
+module.exports = app;
