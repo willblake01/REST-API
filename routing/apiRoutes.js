@@ -2,15 +2,19 @@ const db = require ('../models');
 
 module.exports = function (app) {
 
-const todos = [];
+  app.get('/todos', function (req, res) {
+    res.json(todos);
+  });
 
-  // app.get('/todos', function (req, res) {
-  //   res.json(todos);
-  // });
-
-  // app.post('/todos', function (req, res) {
-  //   var todo = req.body.todo;
-  // });
-
-  // res.send(todo);
+  // POST route for saving a new post
+  app.post("/api/todos", function (req, res) {
+    console.log(req.body);
+    db.Todos.create({
+        title: req.body.title,
+        inProgress: req.body
+      })
+      .then(function (dbTodo) {
+        res.json(dbTodo);
+      });
+  });
 };

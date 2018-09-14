@@ -6,7 +6,12 @@
 
   <div class='submit-todo'>
     <h5>Add a new Todo</h5>
-    <button type="button" id="add">ADD</button>
+    <div>
+      <form class='input' onsubmit='submitTodo()' action='/api/todos'>
+        <input type='search' class='form-control rounded-0 py-2' id='user-input'>
+        <button type='submit' id='add-btn' class='btn btn-,lg btn-default'>ADD</button>
+      </form>
+    </div>
   </div>
 
   <div class='todos'>
@@ -15,9 +20,6 @@
     </div>
     <ul>
       <li>clean room</li>
-      <li>read book</li>
-      <li>run</li>
-      <li>feed cat</li>
     </ul>
   </div>
 
