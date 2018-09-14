@@ -9,6 +9,16 @@ html {
   position: relative;
 }
 
+.input {
+  display: flex;
+  flex: 1;
+}
+
+#user-input {
+  width: 200px;
+  margin-right: 10px;
+}
+
 .column-titles {
   display: grid;
   justify-items: center;
@@ -39,19 +49,16 @@ html {
   grid-column: 1;
   display: grid;
   grid-auto-rows: repeat(3, minmax(80px, 1fr));
-  background-color: aquamarine;
 }
 
 .in-progress {
   grid-column: 2;
   display: grid;
   grid-auto-rows: repeat(3, minmax(80px, 1fr));
-  background-color: aquamarine;
 }
 
 .completed {
   grid-column: 3;
   display: grid;
   grid-auto-rows: repeat(3, minmax(80px, 1fr));
-  background-color: aquamarine;
 }
