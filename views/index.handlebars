@@ -18,7 +18,10 @@
     <div class='column-titles'>
       <h2>To Dos</h2>
     </div>
-    <ul id='todos'></ul>
+    <ul id='todos'>
+      {{#each items}}
+        <li>{{title}}</li>
+      {{/each}}
     </ul>
   </div>
 
