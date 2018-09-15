@@ -45,7 +45,7 @@ html {
   align-content: left;
 }
 
-.todos {
+.status-columns {
   grid-column: 1;
   display: grid;
   grid-auto-rows: repeat(3, minmax(80px, 1fr));
