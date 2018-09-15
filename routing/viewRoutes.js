@@ -9,12 +9,17 @@ module.exports = function (app) {
 
   //index route for landing page
   app.get("/", function (req, res) {
-    res.render("index", {
-      title: "To Dos",
-      css: "index.css",
-      javascript: "index.js"
+    db.Todos.findAll({}).then(function (result) {
+      var items = [];
+      for (var i = 0; i < result.length; i++) {
+        items.push(result[i].dataValues)
+      }
+      res.render("index", {
+        title: "To Dos",
+        css: "index.css",
+        javascript: "index.js",
+        items: items
+      });
     });
   });
-
-  // res.send(todo);
 }
