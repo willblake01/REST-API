@@ -7,7 +7,7 @@
   <div class='submit-todo'>
     <h5>Add a new Todo</h5>
     <div>
-      <form class='input' action='/api/todos' method='POST'>
+      <form class='input' action='/api/new' method='POST'>
         <input type='search' name='title' class='form-control rounded-0 py-2' id='user-input'>
         <button type='submit' id='add-btn' class='btn btn-,lg btn-default'>ADD</button>
       </form>
@@ -20,7 +20,15 @@
     </div>
     <ul id='todos'>
       {{#each items}}
-        <li>{{title}}</li>
+        <li>{{title}}
+          <select>
+            <option selected="selected">Action</option>
+            <option type='submit' action='/api/edit/:id' method='PUT'>Edit</option>
+            <option type='submit' action='/api/delete/:id' method='DELETE'>Delete</option>
+            <option type='submit'>In Progress</option>
+            <option type='submit'>Complete</option>
+          </select>
+        </li>
       {{/each}}
     </ul>
   </div>
