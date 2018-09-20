@@ -19,10 +19,21 @@ module.exports = function (app) {
     res.redirect('/');
   });
 
+  // GET delete record form
+  app.get('/api/delete/:id', function(req, res) {
+    res.render("delete", {
+          title: "Delete Form",
+          css: "delete.css",
+          javascript: "delete.js"
+    });
+  });
+
   // DELETE route for deleting a todo
-  app.delete('/api/delete/:id', function(req, res) {
-    db.Todos.delete({
-      id: req.body.id
+  app.delete('/api/destroy/:id', function(req, res) {
+    db.Todos.destroy({
+      where: {
+        id: req.body.id
+      }
     })
     res.redirect('/');
   });
