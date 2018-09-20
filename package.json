@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start server.js --name rest-api"
+    "start": "node ./node_modules/.bin/pm2-runtime server.js -i max"
   },
   "repository": {
     "type": "git",
