@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start server.js"
+    "start": "pm2 start server.js --name REST-API"
   },
   "repository": {
     "type": "git",
