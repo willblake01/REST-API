@@ -2,6 +2,7 @@ module.exports = {
   apps: [{
     name: 'REST-API',
     script: 'server.js',
+    instances: 'max',
     env: {
       NODE_ENV: 'development'
     },
