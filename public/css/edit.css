@@ -1,0 +1,17 @@
+#edit {
+  display: grid;
+  justify-items: center;
+}
+
+.edit_form {
+  height: 300px;
+  width: 400px;
+  padding: 10px;
+  background-color: grey;
+}
+
+#user-input {
+  width: 200px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
