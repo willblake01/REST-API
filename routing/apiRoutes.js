@@ -11,16 +11,25 @@ module.exports = function (app) {
     res.redirect('/');
   });
 
+  // GET edit record form
+  app.get('/api/:id/edit', function (req, res) {
+    res.render("edit", {
+      title: "Edit Form",
+      css: "edit.css",
+      javascript: "edit.js"
+    });
+  });
+
   // EDIT route for editing fields
-  app.put('/api/edit/:id', function(req, res) {
-    db.Todos.put({
-      id: req.body.id
+  app.patch('/api/:id', function(req, res) {
+    db.Todos.update({
+      title: req.body.title
     })
     res.redirect('/');
   });
 
   // GET delete record form
-  app.get('/api/delete/:id', function(req, res) {
+  app.get('/api/:id/delete', function(req, res) {
     res.render("delete", {
           title: "Delete Form",
           css: "delete.css",
@@ -29,7 +38,7 @@ module.exports = function (app) {
   });
 
   // DELETE route for deleting a todo
-  app.delete('/api/destroy/:id', function(req, res) {
+  app.delete('/api/:id', function(req, res) {
     db.Todos.destroy({
       where: {
         id: req.body.id
