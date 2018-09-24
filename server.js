@@ -7,14 +7,15 @@ const request = require('request');
 const https = require('https');
 const logger = require('./log/lib/logger.js');
 
+// Set up Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const db = require('./models');
 
-// Set up Express app
-app.use(morgan('dev'));
-app.use(cookieParser());
+// Set up body parser from documentation
+app.use(morgan('dev')); // HTTP request logger
+app.use(cookieParser()); // read cookies
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
