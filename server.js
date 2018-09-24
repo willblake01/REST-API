@@ -25,15 +25,21 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+// Implement Request Logger
+app.use((request, response, next) => {
+    console.log(new Date().toISOString(), request.method, request.originalUrl);
+    return next();
+})
+
 // Routes =====================================================================
 require('./routing/apiRoutes.js')(app);
 require('./routing/viewRoutes.js')(app);
 
-app.use(function (err, req, res, next) {
-    if (err) {
-        console.log(err.message);
-        res.status('404').send(err);
-    }
+app.use((request, response) => {
+    console.warn(new Date().toISOString(), request.method, request.originalUrl, '404');
+    return response.status(404).render('404', {
+        title: '404',
+    })
 });
 
 // Run server and sync database
