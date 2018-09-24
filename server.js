@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const request = require('request');
 const https = require('https');
+const logger = require('./log/lib/logger.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
