@@ -42,6 +42,17 @@ app.use((request, response) => {
     })
 });
 
+// Error Handling
+app.use((error, request, response, next) => {
+    if (response.headersSent) {
+        return next(error);
+    }
+    console.log(error);
+    return response.status(500).render('500', {
+        title: '500',
+    });
+});
+
 // Run server and sync database
 db.sequelize.sync({ force: false }).then(function () {
     app.listen(PORT, function () {
