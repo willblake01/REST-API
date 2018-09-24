@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 const db = require('./models');
 
-// Set up express app
+// Set up Express app
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +25,7 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-// Implement Request Logger
+// Implement request logger
 app.use((request, response, next) => {
     console.log(new Date().toISOString(), request.method, request.originalUrl);
     return next();
@@ -35,6 +35,7 @@ app.use((request, response, next) => {
 require('./routing/apiRoutes.js')(app);
 require('./routing/viewRoutes.js')(app);
 
+// Request error handling
 app.use((request, response) => {
     console.warn(new Date().toISOString(), request.method, request.originalUrl, '404');
     return response.status(404).render('404', {
@@ -42,7 +43,7 @@ app.use((request, response) => {
     })
 });
 
-// Error Handling
+// Error handling
 app.use((error, request, response, next) => {
     if (response.headersSent) {
         return next(error);
