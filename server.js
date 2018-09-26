@@ -8,7 +8,7 @@ const path = require('path');
 const request = require('request');
 const https = require('https');
 const logger = require('./log/lib/logger.js');
-const requestLogger = require('./log/lib/requestLogger');
+const requestLogger = require('./log/lib/requestLogger.js');
 
 // Set up Express app
 const app = express();
@@ -17,10 +17,12 @@ const PORT = process.env.PORT || 3000;
 const db = require('./models');
 
 // Set up body parser from documentation
-app.use(morgan('dev')); // HTTP request logger
 app.use(cookieParser()); // read cookies
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Implement Morgan request logger
+app.use(requestLogger);
 
 // Access static directory
 app.use(express.static(__dirname + '/public'));
@@ -29,9 +31,6 @@ app.use(express.static(__dirname + '/public'));
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
-// Implement Morgan request logger
-app.use(requestLogger);
 
 // express-winston logger BEFORE the router
 app.use(expressWinston.logger({
